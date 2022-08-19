@@ -1,20 +1,20 @@
 let fs = require("fs");
 let axios = require("axios");
 
-let songs = [];
-let durations = [];
+let songs = ['JTiger','JTwinkle'];
+let durations = ["00:15","00:05"];
 let ipfsArray = [];
 
 for (let i = 0; i < songs.length; i++) {
   ipfsArray.push({
     path: `metadata/${i}.json`,
     content: {
-      image: `ipfs://xxx`, //xxx = hash
+      image: `ipfs://QmNsnqDMmRMKgWm2dQrZ4uFGQNUiZ7vmbfgptYyAgfKNVx/media/2`, //xxx = hash
       name: songs[i],
-      animation_url: `ipfs://xxx/`, //xxx = hash
+      animation_url: `ipfs://QmNsnqDMmRMKgWm2dQrZ4uFGQNUiZ7vmbfgptYyAgfKNVx/media/${i}/`, //xxx = hash
       duration: durations[i],
-      artist: "",
-      year: ""
+      artist: "El Papu",
+      year: "1969"
     },
   });
 }
@@ -22,7 +22,7 @@ for (let i = 0; i < songs.length; i++) {
 axios.post("https://deep-index.moralis.io/api/v2/ipfs/uploadFolder", ipfsArray, {
     headers: {
       "X-API-KEY":
-        "<API Key Here>",
+        "i4pU5kxcVgboosPCxCDEigbmNCUGfS5dhbT4D0LUwuWMYBk43Fc93RG9C9QrfAmH",
       "Content-Type": "application/json",
       accept: "application/json",
     },

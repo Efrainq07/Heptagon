@@ -11,11 +11,6 @@ export const library = [
       contract: "0x1C45d483515A92fCDD0aa5eaF03dbdf1B7d6898a",
     },
     {
-      title: "The Unknown",
-      image:
-        "https://350927.smushcdn.com/1388247/wp-content/uploads/2020/11/Unknown-Album-Cover-PP1.jpg?lossy=0&strip=1&webp=1",
-    },
-    {
       title: "Get Rich Or Die Tryin'",
       image: "https://m.media-amazon.com/images/I/61AYpcmBtpL._SY450_.jpg",
     },
@@ -33,11 +28,6 @@ export const library = [
       title: "Ball Breaker",
       image:
         "https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/AN5W2E/b0cb0df8c30d479da36443c10bc85b96.jpg/f/ac-dc-ballbreaker-framed-album-cover-30x30cm.jpg",
-    },
-    {
-      title: "Flavors",
-      image:
-        "https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/125831034/original/c2e1426823f87d01f7b43085c6b20e61b0736794/create-you-a-special-artistic-album-cover.png",
     },
     {
       title: "Shakira",
