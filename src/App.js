@@ -9,6 +9,8 @@ import Player from "./components/AudioPlayer";
 import { Layout } from "antd";
 import Spotify from "./images/Spotify.png";
 import { SearchOutlined, DownCircleOutlined } from "@ant-design/icons";
+import connectWallet from './wallet/WalletConnect';
+import Button from 'antd/lib/button';
 
 const { Content, Sider, Footer } = Layout;
 
@@ -20,7 +22,9 @@ const App = () => {
       <Layout>
         <Layout>
           <Sider width={300} className="sideBar">
-            <img src={Spotify} alt="Logo" className="logo"></img>
+            <Button type="primary" onClick={(connectWallet)}>
+               Connect Wallet
+            </Button>
             <div className="searchBar">
               <span> Search </span>
               <SearchOutlined style={{ fontSize: "30px" }} />
