@@ -1,32 +1,14 @@
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from "web3"
+import {createClient} from 'urql'
+import { ethers } from "ethers" ;
 
+
+const API_URL = 'https://api-mumbai.lens.dev';
 
 var account = null
 var contract = null
-
-const providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider, // required
-      options: {
-        infuraId: "2DblxUByzOnOipHg8YnNNi3Z3lO", // required
-        rpc: {
-          80001: "https://polygon-mumbai.infura.io/v3/9f59f26af4144269a44b8ce1c426d028"
-          },
-      }
-    }
-  };
-
-const web3modal = new Web3Modal(
-    {
-        network : "mumbai",
-        theme : "dark",
-        cacheProvider : true,
-        providerOptions
-    }
-    
-);
 
 // export default async function connectWallet() {
 //     var provider = await web3modal.connect()
@@ -41,26 +23,88 @@ const web3modal = new Web3Modal(
 //     //contract = new web3.eth.Contract(ABI, ADDRESS);
 // };
 
-export default async function connectWallet() {
-    console.log("yes")
-    var provider = await web3modal.connect()
+// firmar 
 
-    await provider.enable();
-    var web3 = new Web3(provider)
 
-    // Subscribe to accounts change
-    provider.on("accountsChanged", function (accounts) {
-      console.log(accounts);
-    });
-    // Subscribe to chainId change
-    provider.on("chainChanged", function (chainId) {
-      console.log(chainId);
-    });
-    // Subscribe to session disconnection
-    provider.on("disconnect", function (code, reason) {
-      console.log(code, reason);
-    });
-    const account = web3.eth.accounts.currentProvider.accounts[0] 
-    
-    
-};
+
+// Retos conchesumare 
+
+
+const client = createClient(
+  {
+    url: API_URL
+  }
+)
+
+async function generateChallenge(address){
+
+   console.log(address)
+const challengeQuery = `query Challenge {
+  challenge(request: { address: "${address}"  }) {
+  text
+  } 
+  }`
+  const response = await client.query(challengeQuery).toPromise()
+  console.log("response Challenge",response)
+  return response
+}
+
+export async function handleAuth(connection,provider) {
+  const address = (await connection.eth.getAccounts())[0]
+  console.log("address-> ",address)
+  let challenge = await generateChallenge(address)
+  // Signature va aqui 
+  const signer = provider.getSigner()
+  
+  let signature = "undefined"
+  let challengeText = challenge.data.challenge.text
+  if (connection.wc) {
+
+    signature = await provider.send(
+        'personal_sign',
+        [ ethers.utils.hexlify(ethers.utils.toUtf8Bytes(challengeText)), address.toLowerCase() ]
+    );
+  }
+  else { 
+    signature = await signer.signMessage(challengeText)
+  }
+
+  const authenticationQuery = `
+  mutation Authenticate {
+  authenticate(request: {
+    address: "${address}",
+    signature: "${signature}"
+  }) {
+    accessToken
+    refreshToken
+  }
+}
+`
+const response = await client.mutation(authenticationQuery).toPromise()
+console.log("response Auth",response)
+}
+
+// export function createAuth(address, signature) {
+
+//   const AUTHENTICATION = `
+//   mutation Authenticate {
+//     authenticate(request: {
+//       address: $address ,
+//       signature: $signature
+//     }) {
+//       accessToken
+//       refreshToken
+//     }
+//   }
+// `
+
+// return apolloClient.mutate({
+//   mutation: gql(AUTHENTICATION),
+//   variables: {
+//     request: {
+//       address,
+//       signature,
+//     },
+//   },
+// })
+// }
