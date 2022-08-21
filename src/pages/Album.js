@@ -1,14 +1,21 @@
-import React from "react";
-import { useAlbum } from "../hooks/useAlbum";
+import React,{useState,useEffect} from "react";
 import { useLocation } from "react-router";
 import "./Album.css";
+import { getAlbumContent } from "../media/albumData";
 import Opensea from "../images/opensea.png";
 import { ClockCircleOutlined } from "@ant-design/icons";
 
 
-const Album = ({ setNftAlbum }) => {
+const Album = ({ setCurrentContent }) => {
   const { state: albumDetails } = useLocation();
-  const { album } = useAlbum(albumDetails.contract);
+  const [content, setAlbumContent] = useState();
+
+  useEffect(() => {
+      getAlbumContent(albumDetails.publicationId).then((content) => {
+        setAlbumContent(content)
+        });
+  }, []);
+
 
   return (
     <>
@@ -22,26 +29,17 @@ const Album = ({ setNftAlbum }) => {
           <div className="albumDeets">
             <div>ALBUM</div>
             <div className="title">{albumDetails.title}</div>
-            <div className="artist">
-              {album && JSON.parse(album[0].metadata).artist}
-            </div>
             <div>
-              {album && JSON.parse(album[0].metadata).year} •{" "}
-              {album && album.length} Songs
+              {content && content.length} Songs
             </div>
           </div>
         </div>
         <div className="topBan">
-          <div className="playButton" onClick={() => setNftAlbum(album)}>
+          <div className="playButton" onClick={() => setCurrentContent(content)}>
             PLAY
           </div>
           <div
             className="openButton"
-            onClick={() =>
-              window.open(
-                `https://testnets.opensea.io/assets/mumbai/${albumDetails.contract}/1`
-              )
-            }
           >
             OpenSea
             <img src={Opensea} className="openLogo" />
@@ -54,9 +52,8 @@ const Album = ({ setNftAlbum }) => {
             <ClockCircleOutlined />
           </div>
         </div>
-        {album &&
-          album.map((nft, i) => {
-            nft = JSON.parse(nft.metadata);
+        {content &&
+          content.map((song, i) => {
             return (
               <>
                 <div className="tableContent">
@@ -65,9 +62,8 @@ const Album = ({ setNftAlbum }) => {
                     className="titleHeader"
                     style={{ color: "rgb(205, 203, 203)" }}
                   >
-                    {nft.name}
+                    {song.title}
                   </div>
-                  <div className="numberHeader">{nft.duration}</div>
                 </div>
               </>
             );
