@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useIPFS } from "./useIPFS";
 
-const useAudio = (url) => {
-  const {resolveLink} = useIPFS();
-  const [audio, setAudio] = useState(url);
+const useAudio = (content) => {
+  const [audio, setAudio] = useState(content);
   const [trackIndex, setTrackIndex] = useState(0);
   const [newSong, setNewSong] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
-  const audioRef = useRef(new Audio(resolveLink(JSON.parse(audio[trackIndex].metadata).animation_url)));
+  const audioRef = useRef(new Audio(audio[trackIndex].audio));
   
   const intervalRef = useRef();
   const isReady = useRef(false);
@@ -34,13 +33,13 @@ const useAudio = (url) => {
 
   useEffect(() => {
     toggle();
-    setAudio(url);
+    setAudio(content);
     if(trackIndex === 0){
       setNewSong(newSong+1)
     }else{
       setTrackIndex(0);
     }
-  }, [url]); 
+  }, [content]); 
 
   useEffect(() => {
     if (isPlaying) {
@@ -61,7 +60,7 @@ const useAudio = (url) => {
 
   useEffect(() => {
     audioRef.current.pause();
-    audioRef.current = new Audio(resolveLink(JSON.parse(audio[trackIndex].metadata).animation_url));
+    audioRef.current = new Audio(audio[trackIndex].audio);
     audioRef.current.volume = volume;
     setTrackProgress(Math.round(audioRef.current.currentTime));
     if (isReady.current) {

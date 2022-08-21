@@ -1,12 +1,10 @@
 import useAudio from "../hooks/useAudio";
 import {Slider} from "antd";
-import { useIPFS } from "../hooks/useIPFS";
 import "./AudioPlayer.css";
 import { SoundOutlined, StepBackwardOutlined, StepForwardOutlined, PlayCircleFilled, PauseCircleFilled} from "@ant-design/icons";
 
 
-const Player = ({ url }) => {
-  const {resolveLink} = useIPFS();
+const Player = ({ content }) => {
   const [
     playing,
     duration,
@@ -18,7 +16,7 @@ const Player = ({ url }) => {
     onSearchEnd,
     onVolume,
     trackIndex
-  ] = useAudio(url);
+  ] = useAudio(content);
 
   
   const minSec = (secs) => {
@@ -33,10 +31,8 @@ const Player = ({ url }) => {
   return (
     <>
     <div className="buttons" style={{width:"300px", justifyContent:"start"}}>
-        <img className="cover" src={resolveLink(JSON.parse(url[trackIndex].metadata).image)} alt="currentCover" />
         <div>
-        <div className="songTitle">{JSON.parse(url[trackIndex].metadata).name}</div>
-        <div className="songAlbum">{url[trackIndex].name}</div>
+        <div className="songTitle">{content[trackIndex].title}</div>
         </div>
     </div>
     <div>
