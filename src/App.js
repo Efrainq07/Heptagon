@@ -56,9 +56,9 @@ const App = () => {
                 </div>
               </Menu.Item>
               <Menu.Item>
-                  <button id="home" class="grey" onClick={()=>{navigate("./Heptagon/")}}>HOME</button>
-                  <button class="grey" onClick={()=>{navigate("./Heptagon/")}}>YOUR MUSIC</button>
-                  <button class="grey" onClick={()=>{navigate("./Heptagon/")}} >RECENTLY PLAYED</button>
+                  <button id="home" class="grey" onClick={()=>{navigate("./")}}>HOME</button>
+                  <button class="grey" onClick={()=>{navigate("./")}}>YOUR MUSIC</button>
+                  <button class="grey" onClick={()=>{navigate("./")}} >RECENTLY PLAYED</button>
                   <button class="grey" onClick={()=>{ window.location.href='https://play.google.com/store/apps' }} >DOWNLOAD APP</button>
                   {account?
               <button class="grey" onClick={async ()=>{
