@@ -2,7 +2,7 @@ import { ethers } from "ethers" ;
 import { requestChallengeQuery, authenticateQuery } from '../graphql-api/APIQueries';
 
 
-async function signText(provider,address,connection,text){
+export async function signText(provider,address,connection,text){
 
   let signature = undefined
   const signer = provider.getSigner()

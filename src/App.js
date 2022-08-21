@@ -38,8 +38,8 @@ const App = () => {
   const [provider, setProvider] = useState();
   const [web3,setWeb3] = useState();
   const [mode, setMode] = useState('horizontal');
-
-
+  const [providerexp, setProviderexp] = useState();
+  const [Connectionexp, setConnectionexp] = useState();
   return (
     <>
       <Layout>
@@ -72,7 +72,8 @@ const App = () => {
                 handleConnectWallet({
                   setAccount,
                   setWeb3modal,
-                  setProvider
+                  setProvider,
+                  setProviderexp
                 })
                 }}>CONNECT WALLET</button>
               }

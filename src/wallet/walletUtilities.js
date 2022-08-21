@@ -26,7 +26,7 @@ const web3modal = new Web3Modal(
     } 
 );
 
-export const handleConnectWallet = async function connectWallet({setAccount,setWeb3modal,setProvider}) {
+export const handleConnectWallet = async function connectWallet({setAccount,setWeb3modal,setProvider, setProviderexp}) {
     var provider = await web3modal.connect()
 
     await provider.enable();
@@ -37,8 +37,9 @@ export const handleConnectWallet = async function connectWallet({setAccount,setW
 
     
     handleAuth(web3,provider2);
-
+    
     setAccount(acc[0]);
     setWeb3modal(web3modal); 
     setProvider(provider);
+    setProviderexp(provider);
 };
