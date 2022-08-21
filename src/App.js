@@ -33,49 +33,31 @@ const App = () => {
     <>
       <Layout>
         <Layout>
-        
           <Header height={300} className="topBar">
             
-            
-
-
             <Menu mode={mode}>
               <Menu.Item disabled="false">
                 <img src={Spotify} alt="Logo" className="logo"></img>
               </Menu.Item>
               <Menu.Item>
-                <div className="searchBar">
-                <span> Search </span>
-                <SearchOutlined style={{ fontSize: "30px" }} />
+                <div class="vertical-center" className="searchBar">
+                  <input type="text" placeholder="SEARCH" aria-label="Search"></input>
                 </div>
               </Menu.Item>
               <Menu.Item>
-                <Link to="/">
-                <p style={{ color: "#1DB954" }}> Home </p>
-                </Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link to="/">
-                <p style={{ color: "#1DB954" }}> Your Music </p>
-                </Link>
-              </Menu.Item>
-              <Menu.Item>
-                <Link to="/">
-                <p style={{ color: "#1DB954" }}> Recently Played </p>
-                </Link>    
-              </Menu.Item>
-              <Menu.Item>
-                <div className="install">
-                  <span> Install App </span>
-                  <DownCircleOutlined style={{ fontSize: "30px" }} />
-                </div>
-              </Menu.Item>           
+                  <button id="home" class="grey">HOME</button>
+                  <button class="grey">YOUR MUSIC</button>
+                  <button class="grey">RECENTLY PLAYED</button>
+                  <button class="grey">DOWNLOAD APP</button>
+                  <button class="grey">CONNECT WALLET</button>
+              </Menu.Item>        
             </Menu>
-
           </Header>
           
           
+          
           <Content className="contentWindow">
+          <h1 class="leyenda">HEPTAGON, DECENTRALIZED MUSIC</h1>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/album" element={<Album setNftAlbum={setNftAlbum}/>} />

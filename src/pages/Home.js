@@ -11,7 +11,7 @@ const Home = () => {
     <>
       <Tabs defaultActiveKey="1" centered>
               <TabPane tab="FEATURED" key="1">
-                <h1 className="featuredTitle">Today Is The Day</h1>
+                <div class="espaciador"></div>
                 <div className="albums">
                   {library.map((e) => (
                     <Link to="/album" state={e} className="albumSelection">
