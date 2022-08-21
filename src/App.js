@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -8,7 +9,7 @@ import './bonsai.min.css';
 import { Link } from "react-router-dom";
 import Player from "./components/AudioPlayer";
 import { Layout, Menu } from "antd";
-import Spotify from "./images/Spotify.png";
+import Spotify from "./images/heptagon.png";
 import { SearchOutlined, DownCircleOutlined } from "@ant-design/icons";
 
 
@@ -29,6 +30,7 @@ const items = [
 
 
 const App = () => {
+  let navigate = useNavigate();
   const [currentContent, setCurrentContent] = useState();
 
   const [account, setAccount] = useState(undefined);
@@ -53,10 +55,10 @@ const App = () => {
                 </div>
               </Menu.Item>
               <Menu.Item>
-                  <button id="home" class="grey">HOME</button>
-                  <button class="grey">YOUR MUSIC</button>
-                  <button class="grey">RECENTLY PLAYED</button>
-                  <button class="grey">DOWNLOAD APP</button>
+                  <button id="home" class="grey" onClick={()=>{navigate("./")}}>HOME</button>
+                  <button class="grey" onClick={()=>{navigate("./")}}>YOUR MUSIC</button>
+                  <button class="grey" onClick={()=>{navigate("./")}} >RECENTLY PLAYED</button>
+                  <button class="grey" onClick={()=>{ window.location.href='https://play.google.com/store/apps' }} >DOWNLOAD APP</button>
                   {account?
               <button class="grey" onClick={async ()=>{
                 await web3modal.clearCachedProvider();
