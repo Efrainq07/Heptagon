@@ -36,6 +36,7 @@ const App = () => {
   const [account, setAccount] = useState(undefined);
   const [web3modal, setWeb3modal] = useState();
   const [provider, setProvider] = useState();
+  const [web3,setWeb3] = useState();
   const [mode, setMode] = useState('horizontal');
 
 
