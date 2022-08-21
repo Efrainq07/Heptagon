@@ -1,5 +1,5 @@
 .featuredTitle {
-  color: white;
+  color: black;
   font-size: 35px;
   font-weight: 600;
   justify-content: center;
@@ -22,12 +22,12 @@
 }
 
 .albumSelection {
-  color:rgb(205, 203, 203);
+  color:black;
   text-align: center;
   transition: transform .4s;
 }
 
 .albumSelection:hover {
-  color: white;
+  color: black;
   transform: scale(1.05);
 }

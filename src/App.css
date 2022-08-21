@@ -27,35 +27,36 @@
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: white;
-    text-shadow: 0 0 0.25px currentcolor;
+    color: black;
 }
 
 .ant-tabs-tab-btn:focus {
-    color: white;
-}
-
-.ant-tabs-tab {
-    color: rgb(125, 125, 125);
-    font-size: 18px;
-    letter-spacing: 2px;
+    color: black;
 }
 
 .ant-tabs-tab:hover {
-    color: white;
+    color: black;
 }
 
+.ant-tabs-tab {
+    color: #ae21ae;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+
 .ant-tabs-ink-bar {
-    background: #1DB954;
+    background: rgba(255,255,255, 0);
     width: 10px;
 }
 
 .ant-slider-track {
-    background-color: #1DB954;
+    background-color: black;
 }
 
 .ant-slider:hover .ant-slider-track {
-    background-color: #1DB954;
+    background-color: black;
 }
 
 .ant-slider-handle {
@@ -66,25 +67,12 @@
     background-color: #3E3E3E;
 }
 
-.logo {
-    width:50px;
-    margin-bottom: 20px;
-  }
-  
+
   .searchBar {
-    border-top: 2px solid rgb(125, 125, 125);
-    border-bottom: 2px solid rgb(125, 125, 125);
     padding: 15px 0px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-  }
-  
-  .sideBar {
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 1px;
   }
   
   .recentPlayed {
@@ -109,7 +97,7 @@
   }
   
   .contentWindow {
-    padding: 50px 0px;
+    padding: 0px 0px;
   }
 
   .footer {
@@ -121,8 +109,143 @@
     background-color: #292929;
     color: rgb(205, 203, 203) !important; 
   }
+  
+  
+  
+  
 
+  .ant-menu-item::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 0;
+    transform: scaleY(0.0000);
+    opacity: 0;
+    transition: transform @menu-animation-duration-normal @ease-out,
+      opacity @menu-animation-duration-normal @ease-out;
+  }
+  
+  .logo {
+    width:120px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
 
+  .topBar {
+    height: 160px;
+    padding-top: 12px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  .ant-menu {
+    background: rgba(0, 0, 0, 0.0) !important;
+  }
+  
+  .ant-menu-horizontal {
+    border-bottom: 0px solid #000000;
+  }
+  
+  .container {
+    position: relative;
+  }
 
+  .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  input{
+    max-height: 8vh !important;
+    margin-top: 24px !important;
+    border: 0px !important;
+    font-weight: bold !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  input::placeholder {
+    color: rgba(0,0,0, 0.4);
+  }
+  
+  input:focus{
+    border: 0px !important;
+    box-shadow: 0 0 0 4px rgba(0,0,0, 0.2) !important;
+  }
+  
+  input:not{
+    border: 0px !important;
+    max-height: 10px !important;
+  }
+  
+  button{
+    border: 0px !important;
+    line-height: 250% !important;
+    margin-top: 40px !important;
+    margin-left: -20px !important;
+    font-size: 13px !important;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0) !important;
+    box-shadow: 0 0 0 0px rgba(0,0,0, 0) !important;
+    color: black !important;
+    letter-spacing: 2px;
+  }
+  
+  button:focus{
+    box-shadow: 0 0 0 4px rgba(0,0,0, 0.2) !important;
+    color: black;
+  }
+  
+  button:hover {
+    background: rgba(0, 0, 0, 0) !important;
+    color: black;
+  }
+  
+  .ant-layout-header {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradient 15s ease infinite;
+  }
+  
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .ant-layout-content {
+      background-image: linear-gradient(#d6d6d6, #d6d6d6);
+      background-attachment: fixed;
+  }
+
+  .espaciador {
+    height: 96px;
+  }
+  
+  .leyenda {
+    color: white;
+    background: black;
+    font-size: 13px;
+    font-weight: 600;
+    justify-content: center;
+    display: flex;
+    letter-spacing: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+  }
 
     
