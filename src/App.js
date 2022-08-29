@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Album from './pages/Album';
 import './App.css';
-import './bonsai.min.css';
+import './bonsai.css';
 import { Link } from "react-router-dom";
 import Player from "./components/AudioPlayer";
 import { Layout, Menu } from "antd";
