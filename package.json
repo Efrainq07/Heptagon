@@ -1,5 +1,6 @@
 {
-  "name": "amazon-clone",
+  "name": "heptagon",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "browser": {
